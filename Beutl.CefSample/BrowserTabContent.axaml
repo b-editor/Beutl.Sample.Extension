@@ -1,0 +1,41 @@
+<UserControl x:Class="Beutl.CefSample.BrowserTabContent"
+             xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ui="using:FluentAvalonia.UI.Controls"
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             mc:Ignorable="d">
+    <DockPanel VerticalAlignment="Stretch">
+        <Grid Margin="4"
+              ColumnDefinitions="Auto,4,*"
+              DockPanel.Dock="Top">
+            <StackPanel Orientation="Horizontal" Spacing="4">
+                <StackPanel.Styles>
+                    <Style Selector="Button">
+                        <Setter Property="Padding" Value="11,7,11,8" />
+                    </Style>
+                </StackPanel.Styles>
+                <Button Theme="{StaticResource TransparentButton}">
+                    <ui:SymbolIcon Symbol="Back" />
+                </Button>
+                <Button Theme="{StaticResource TransparentButton}">
+                    <ui:SymbolIcon RenderTransform="scaleX(-1)" Symbol="Back" />
+                </Button>
+                <Button Theme="{StaticResource TransparentButton}">
+                    <ui:SymbolIcon Symbol="Refresh" />
+                </Button>
+            </StackPanel>
+
+            <TextBox Grid.Column="2" Text="{Binding Url.Value, Mode=OneWay}">
+                <TextBox.InnerRightContent>
+                    <Button Theme="{StaticResource TransparentButton}">
+                        <ui:SymbolIcon Symbol="Find" />
+                    </Button>
+                </TextBox.InnerRightContent>
+            </TextBox>
+        </Grid>
+        <Decorator x:Name="browserWrapper" />
+    </DockPanel>
+</UserControl>

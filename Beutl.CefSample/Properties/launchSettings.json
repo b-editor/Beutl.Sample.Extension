@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Beutl.CefSample": {
+      "commandName": "Executable",
+      "executablePath": "D:\\Source\\b-editor\\beutl\\src\\Beutl\\bin\\Debug\\net7.0\\Beutl.exe"
+    }
+  }
+}
