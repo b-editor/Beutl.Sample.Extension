@@ -1,8 +1,13 @@
-﻿using Avalonia.Threading;
+﻿using System.Reactive.Linq;
+
+using Avalonia.Threading;
 
 using Beutl.Extensibility;
 
 using Reactive.Bindings;
+
+using Xilium.CefGlue;
+using Xilium.CefGlue.Avalonia;
 
 namespace Beutl.CefSample;
 
@@ -24,7 +29,7 @@ public sealed class SamplePageViewModel : IPageContext
         {
             int idx = TabItems.IndexOf(item);
             TabItems.Remove(item);
-            if (idx < TabItems.Count)
+            if (idx < TabItems.Count + 1)
             {
                 SelectedTab.Value = TabItems[idx];
             }
@@ -61,6 +66,7 @@ public sealed class SamplePageViewModel : IPageContext
     }
 }
 
+// AvaloniaCefBrowserがBindingに対応していないので冗長なコードになってます。
 public sealed class BrowserTabViewModel : IDisposable
 {
     public BrowserTabViewModel(string initialUrl)
@@ -71,6 +77,15 @@ public sealed class BrowserTabViewModel : IDisposable
         {
             Content.Value = new(this);
         });
+
+        GoBack = new ReactiveCommand(CanGoBack)
+            .WithSubscribe(() => Browser?.GoBack());
+
+        GoForward = new ReactiveCommand(CanGoForward)
+            .WithSubscribe(() => Browser?.GoForward());
+
+        Reload = new ReactiveCommand(IsLoading.Select(v => !v))
+            .WithSubscribe(() => Browser?.Reload());
     }
 
     public ReactiveProperty<string> Url { get; } = new();
@@ -78,6 +93,20 @@ public sealed class BrowserTabViewModel : IDisposable
     public ReactiveProperty<string> Title { get; } = new();
 
     public ReactiveProperty<BrowserTabContent> Content { get; } = new();
+
+    public ReactiveProperty<bool> CanGoBack { get; } = new();
+
+    public ReactiveProperty<bool> CanGoForward { get; } = new();
+
+    public ReactiveProperty<bool> IsLoading { get; } = new();
+
+    public ReactiveCommand GoBack { get; }
+
+    public ReactiveCommand GoForward { get; }
+
+    public ReactiveCommand Reload { get; }
+
+    private AvaloniaCefBrowser? Browser => Content.Value?.Browser;
 
     public void Dispose()
     {

@@ -17,20 +17,22 @@
                         <Setter Property="Padding" Value="11,7,11,8" />
                     </Style>
                 </StackPanel.Styles>
-                <Button Theme="{StaticResource TransparentButton}">
+                <Button Command="{Binding GoBack}" Theme="{StaticResource TransparentButton}">
                     <ui:SymbolIcon Symbol="Back" />
                 </Button>
-                <Button Theme="{StaticResource TransparentButton}">
+                <Button Command="{Binding GoForward}" Theme="{StaticResource TransparentButton}">
                     <ui:SymbolIcon RenderTransform="scaleX(-1)" Symbol="Back" />
                 </Button>
-                <Button Theme="{StaticResource TransparentButton}">
+                <Button Command="{Binding Reload}" Theme="{StaticResource TransparentButton}">
                     <ui:SymbolIcon Symbol="Refresh" />
                 </Button>
             </StackPanel>
 
-            <TextBox Grid.Column="2" Text="{Binding Url.Value, Mode=OneWay}">
+            <TextBox x:Name="addressBar"
+                     Grid.Column="2"
+                     Text="{Binding Url.Value, Mode=TwoWay}">
                 <TextBox.InnerRightContent>
-                    <Button Theme="{StaticResource TransparentButton}">
+                    <Button x:Name="searchButton" Theme="{StaticResource TransparentButton}">
                         <ui:SymbolIcon Symbol="Find" />
                     </Button>
                 </TextBox.InnerRightContent>

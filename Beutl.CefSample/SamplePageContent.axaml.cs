@@ -1,9 +1,6 @@
 ﻿using Avalonia.Controls;
-using Avalonia.Threading;
 
 using FluentAvalonia.UI.Controls;
-
-using Xilium.CefGlue.Avalonia;
 
 namespace Beutl.CefSample;
 
