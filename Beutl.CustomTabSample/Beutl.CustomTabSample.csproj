@@ -1,13 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
+  
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
 
     <RepositoryUrl>https://github.com/b-editor/beutl</RepositoryUrl>
-    <PackageId>Beutl.CefSample</PackageId>
-    <Title>Cefサンプル</Title>
+    <PackageId>Beutl.CustomTabSample</PackageId>
+    <Title>カスタムタブサンプル</Title>
     <Description>サンプル</Description>
     <PackageTags>sample</PackageTags>
     <Version>1.0.0</Version>
@@ -23,9 +23,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Beutl.Sdk" Version="1.0.0-preview.1" />
-    <PackageReference Include="CefGlue.Avalonia" Version="106.5249.19-avalonia11" />
-    <PackageReference Include="NuGet.Versioning" Version="6.7.0" />
+    <PackageReference Include="Beutl.Sdk" Version="1.0.0-preview.3" />
   </ItemGroup>
 
 </Project>
